@@ -11,6 +11,12 @@ import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
+
+//import frc.robot.commands.Autos.AlignToTarget;
+
+
+
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -35,7 +41,13 @@ public class RobotContainer {
     private final Swerve s_Swerve = new Swerve();
 
 
+
+
+
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
+    
+    //private final Command align = new AlignToTarget(s_Swerve, m_Limelight);
+    //Drivetrain
     public RobotContainer() {
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
@@ -70,6 +82,6 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         
-        return new AUTO1(s_Swerve);
+        return new PathPlannerTesting(s_Swerve);
     }
 }
