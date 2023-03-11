@@ -34,9 +34,9 @@ public class arm extends SubsystemBase {
 
     //creates a new arm
     public arm() {
-        extension1 = new TalonSRX(25);
-        extension2 = new TalonSRX(26);
-        elevatorLift = new Solenoid(PneumaticsModuleType.REVPH, 0);
+        extension1 = new TalonSRX(Constants.firstStageMotor);
+        extension2 = new TalonSRX(Constants.secondStageMotor);
+        elevatorLift = new Solenoid(PneumaticsModuleType.REVPH, Constants.armSolenoid);
         extension1.setNeutralMode(NeutralMode.Brake);
         extension2.setNeutralMode(NeutralMode.Brake);
       }

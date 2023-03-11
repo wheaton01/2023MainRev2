@@ -13,6 +13,11 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.1;
 
+        /*Subsystem Constants */
+        public static final int firstStageMotor = 25;
+        public static final int secondStageMotor = 26;
+        public static final int armSolenoid = 0;
+
     public static final class Swerve {
         //ORIGpublic static final int pigeonID = 1;
         public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-
@@ -24,7 +29,6 @@ public final class Constants {
         public static final double trackWidth = Units.inchesToMeters(21.65); //TODO: CHANGED This must be tuned to specific robot
         public static final double wheelBase = Units.inchesToMeters(21.65); //TODO: CHANGED This must be tuned to specific robot
         public static final double wheelCircumference = chosenModule.wheelCircumference;
-
         /* Swerve Kinematics 
          * No need to ever change this unless you are not doing a traditional rectangular/square 4 module swerve */
          public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
