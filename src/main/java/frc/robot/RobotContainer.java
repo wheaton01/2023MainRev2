@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -27,6 +29,7 @@ public class RobotContainer {
     /* Controllers */
     
     private final XboxController driver = new XboxController(0);
+    private final XboxController Operator = new XboxController(1);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -37,8 +40,15 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
+
+    //Opearator Buttons
+
+    private final JoystickButton OphumanFeed = new JoystickButton(Operator, XboxController.Button.kX.value);
+
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+    private final arm vArm = new arm();
+//OtherDevices
 
 
 
@@ -72,6 +82,10 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
+
+        //Operator Controlls
+        OphumanFeed.onTrue(new InstantCommand(() -> vArm.humanFeed()));
     }
 
     /**
