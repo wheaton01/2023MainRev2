@@ -40,7 +40,15 @@ public class TeleopSwerve extends CommandBase {
             new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed), 
             rotationVal * Constants.Swerve.maxAngularVelocity, 
             !robotCentricSup.getAsBoolean(), 
-            true
+            false
         );
     }
 }
+//TODO: look into this to help with gyro rotation during teleop
+// double gyroRate = m_gyro.getRate() * 0.25;
+// Rotation2d correctedRotation = getPose().getRotation().minus(new Rotation2d(gyroRate));
+// desiredChassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+//         kMaxSpeedMetersPerSecond * xSpeed,
+//         kMaxSpeedMetersPerSecond * ySpeed,
+//         kMaxAngularSpeedRadiansPerSecond * rot,
+//         correctedRotation);
