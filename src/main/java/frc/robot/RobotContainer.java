@@ -1,15 +1,20 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+<<<<<<< Updated upstream
 import edu.wpi.first.wpilibj.Joystick;
+=======
+>>>>>>> Stashed changes
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.autos.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import frc.robot.autos.PathPlannerTesting;
+import frc.robot.commands.TeleopSwerve;
+import frc.robot.commands.ArmCommand.toHome;
+import frc.robot.commands.ArmCommand.toHumanFeed;
+import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.arm;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,6 +37,15 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+<<<<<<< Updated upstream
+=======
+    private final arm vArm = new arm();
+
+//OtherDevices
+
+
+
+>>>>>>> Stashed changes
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -46,6 +60,8 @@ public class RobotContainer {
             )
         );
 
+
+        vArm.setDefaultCommand(new toHome(vArm));
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -59,6 +75,14 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+<<<<<<< Updated upstream
+=======
+
+
+        //Operator Controlls
+        OphumanFeed.whileTrue(new toHome(vArm));        
+        OphumanFeed.whileTrue(new toHumanFeed(vArm));
+>>>>>>> Stashed changes
     }
 
     /**
