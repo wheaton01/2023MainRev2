@@ -39,9 +39,11 @@ public class arm extends SubsystemBase {
       //Arm Raise/lower commands call this depending on scoring and whatever
       public void armDown(){
         elevatorLift.set(false);
+        SmartDashboard.putString("armPos","ArmDOWN");
       }
       public void armUp(){
         elevatorLift.set(true);
+        SmartDashboard.putString("armPos","ArmUP");
       }
       
       //Motor Positions
