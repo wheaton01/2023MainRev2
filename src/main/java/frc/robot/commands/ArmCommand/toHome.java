@@ -21,7 +21,10 @@ public class toHome extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    vArm.armDown();
+    //sets arm down
+    vArm.armDown(); 
+    //goes to retracted position
+    vArm.SetPosition(0, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

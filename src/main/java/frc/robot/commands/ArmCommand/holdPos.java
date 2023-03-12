@@ -7,30 +7,31 @@ package frc.robot.commands.ArmCommand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.arm;
 
-
-
-public class toHumanFeed extends CommandBase {
-  /** Creates a new HumanFeed. */
-
+public class holdPos extends CommandBase {
+  /** Creates a new holdPos. */
   arm vArm;
 
-  public toHumanFeed(arm param_Arm) {
-    // Use addRequirements() here to declare subsystem dependencies.
+
+
+  public holdPos(arm param_Arm) {
+
     vArm = param_Arm;
+    
+
     addRequirements(vArm);
+    //DO NOT FORGET THIS WITHOUT THIS YOUR CODE WILL NOT INTERRUPT OTHER COMMANDSeclare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    vArm.armUp();
-    vArm.SetPosition(0, 0);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    vArm.ArmPID();
   }
 
   // Called once the command ends or is interrupted.
