@@ -13,6 +13,24 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.1;
 
+
+        /*Subsystem Constants */
+        public static final int firstStageMotor = 25;
+        public static final int secondStageMotor = 26;
+        public static final int intakeMotor = 27;//TODO: LIKELY WILL CHANGE
+        public static final int armSolenoid = 0;
+
+        /*Extension Position Constants : p stands for position!*/
+        public static final int pHumanFeed = 0;
+        public static final int pCone = 0;
+        public static final int pCube = 0;
+
+        /*PID Configuration For Arm Extension */
+        public static final Double extensionP = .001;//TODO: PID TUNING HERE
+        public static final Double extensionI = .00;
+        public static final Double extensionD = .00;
+
+
     public static final class Swerve {
         public static final int pigeonID = 1;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-

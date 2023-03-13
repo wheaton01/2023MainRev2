@@ -1,15 +1,22 @@
 package frc.robot;
 
+import java.sql.Driver;
+
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.autos.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import frc.robot.autos.PathPlannerTesting;
+import frc.robot.autos.exampleAuto;
+import frc.robot.commands.TeleopSwerve;
+import frc.robot.commands.ArmCommand.holdPos;
+import frc.robot.commands.ArmCommand.toHome;
+import frc.robot.commands.ArmCommand.toHumanFeed;
+import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.arm;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,7 +26,8 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
     /* Controllers */
-    private final Joystick driver = new Joystick(0);
+    private final XboxController driver = new XboxController(0);
+    private final XboxController Operator = new XboxController(1);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -29,9 +37,19 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    /* Operator Buttons */
+    private final  JoystickButton opHumanFeed = new JoystickButton(driver, XboxController.Button.kX.value);
+    private final  JoystickButton opHome = new JoystickButton(driver, XboxController.Button.kA.value);
+
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+
+    private final arm vArm = new arm();
+
+
+//OtherDevices
+
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -46,9 +64,13 @@ public class RobotContainer {
             )
         );
 
-        // Configure the button bindings
+
+        vArm.setDefaultCommand(new holdPos(vArm));
+        try ( PneumaticHub m_ph = new PneumaticHub(30)) {}
+   // Configure the button bindings
         configureButtonBindings();
     }
+    
 
     /**
      * Use this method to define your button->command mappings. Buttons can be created by
@@ -59,6 +81,10 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+        //Operator Controlls
+        opHumanFeed.whileTrue(new toHome(vArm));        
+        opHome.whileTrue(new toHumanFeed(vArm));
+
     }
 
     /**
@@ -68,6 +94,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
+        return new PathPlannerTesting(s_Swerve);
     }
 }
