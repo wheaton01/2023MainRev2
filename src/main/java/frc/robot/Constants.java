@@ -17,6 +17,7 @@ public final class Constants {
         /*Subsystem Constants */
         public static final int firstStageMotor = 25;
         public static final int secondStageMotor = 26;
+        public static final int intakeMotor = 27;//TODO: LIKELY WILL CHANGE
         public static final int armSolenoid = 0;
 
         /*Extension Position Constants : p stands for position!*/

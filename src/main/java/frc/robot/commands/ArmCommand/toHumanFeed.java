@@ -24,6 +24,7 @@ public class toHumanFeed extends CommandBase {
   @Override
   public void initialize() {
     vArm.armUp();
+    vArm.intakeON(155);
     vArm.SetPosition(0, 0);
   }
 

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.autos.PathPlannerTesting;
 import frc.robot.autos.exampleAuto;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.ArmCommand.holdPos;
@@ -37,8 +38,8 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     /* Operator Buttons */
-    private final  JoystickButton opHumanFeed = new JoystickButton(Operator, XboxController.Button.kX.value);
-    private final  JoystickButton opHome = new JoystickButton(Operator, XboxController.Button.kA.value);
+    private final  JoystickButton opHumanFeed = new JoystickButton(driver, XboxController.Button.kX.value);
+    private final  JoystickButton opHome = new JoystickButton(driver, XboxController.Button.kA.value);
 
 
     /* Subsystems */
@@ -93,6 +94,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
+        return new PathPlannerTesting(s_Swerve);
     }
 }
