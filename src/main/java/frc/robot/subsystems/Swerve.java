@@ -29,7 +29,6 @@ public class Swerve extends SubsystemBase {
     
     public Swerve() {
         gyro = new AHRS(SPI.Port.kMXP);
-
         //gyro.configFactoryDefault();
         zeroGyro();
 
@@ -68,7 +67,10 @@ public class Swerve extends SubsystemBase {
         for(SwerveModule mod : mSwerveMods){
             mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
         }
-    }    
+    }
+    public void SwerveBalanceSpeed() {
+        //TODO: maybe use this for swerve during auton
+    }   
 
     /* Used by SwerveControllerCommand in Auto */
     public void setModuleStates(SwerveModuleState[] desiredStates) {
@@ -106,15 +108,11 @@ public class Swerve extends SubsystemBase {
     public void zeroGyro(){
         //TODO: Setup Gyro Zero Program gyro.setYaw(0);
         gyro.zeroYaw();
+        
     }
-
-    public void stopModules() {
-     //TODO: FIX THIS
-    }
-
 
     public Rotation2d getYaw() {
-        return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
+        return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()+180) : Rotation2d.fromDegrees(gyro.getYaw()+180);
     }
 
     public void resetModulesToAbsolute(){
