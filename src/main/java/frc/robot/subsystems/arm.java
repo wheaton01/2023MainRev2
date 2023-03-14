@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import javax.xml.namespace.QName;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -27,6 +28,7 @@ public class arm extends SubsystemBase {
     Solenoid elevatorLift;
     public double e1DesiredPos;
     public double e2DesiredPos;
+    PIDController balls;
     
     //creates a new arm
     public arm() {
@@ -42,6 +44,8 @@ public class arm extends SubsystemBase {
         extension1.setNeutralMode(NeutralMode.Brake);
         extension2.setNeutralMode(NeutralMode.Brake);
         intake.setNeutralMode(NeutralMode.Brake);
+
+        balls = new PIDController(0.1, 0, 0);
        
       }
 
@@ -86,6 +90,12 @@ public class arm extends SubsystemBase {
       public void ArmPID(){
         //extension1.set(extensionPID.calculate);
          // extension1.set//TODO:PICKUP WHERE I LEFT OFF
+
+        double encoderVal = e1Encoder.getDistance(); // There should only be one encoder
+        double MotorCommand = balls.calculate(encoderVal, e1DesiredPos);
+        extension1.set(TalonSRXControlMode.PercentOutput, MotorCommand);
+         
+         
 
       }
 
